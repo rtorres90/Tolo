@@ -1,5 +1,5 @@
 <?php
-require_once 'conection.php';
+require_once 'connection.php';
 class $Table{
 
 $Atributes
@@ -11,17 +11,17 @@ $Methods
 
 //Lógica de negocio
 
-function conect(conexion $$con) {
+function connect(connection $$con) {
 
-	return $$con->abrirConexion();
+	return $$con->openConnetion();
 
 }
 
 function list$Table() {
 
-	$$con = new conexion();
+	$$con = new connection();
 
-	$$conection = $$this->conectar($$con);
+	$$conection = $$this->connect($$con);
 
 	mysql_select_db("$strNameDataBase");
 
@@ -35,23 +35,35 @@ function list$Table() {
 		$$array$Table[] = $$$TableMin;
 
 	}
-	$$con->cerrarConexion($$conection);
+	$$con->closeConnetion($$connection);
 	return $$array$Table;
 
 }
 
-function ingresarBanco(Banco $banco) {
+function create$Table($Table $TableMin) {
 
-	$con = new conexion();
+	$$con = new connection();
 
-	$conexion = $this->conectar($con);
+	$$conection = $$this->connect($$con);
 
-	mysql_select_db("sgatherm_factoring");
+	mysql_select_db("$strNameDataBase");
 
-	mysql_query("INSERT INTO banco(strNombreBanco) VALUES ('".$banco->getStrNombreBanco()."')") or die(mysql_error());
+	mysql_query("$sqlCreateScript") or die(mysql_error());
 
-	$con->cerrarConexion($conexion);
+	$$con->closeConnetion($$connection);
 
+}
+
+function update$Table($$$primaryKey, $$strFieldColumn, $$value){
+	$$con = new connection();
+
+	$$conection = $$this->connect($$con);
+
+	mysql_select_db("$strNameDataBase");
+
+	mysql_query("UPDATE $TableMin SET $$strFieldColumn = $$value where $$primaryKey = $$$primaryKey") or die(mysql_error());
+
+	$$con->closeConnetion($$connection);
 }
 }
 ?>
